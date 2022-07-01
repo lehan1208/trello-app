@@ -1,0 +1,29 @@
+@import '../GlobalStyle/GlobalStyle.scss';
+
+.board-column {
+  display: flex;
+  margin: 0 $gap $gap $gap;
+  gap: $gap;
+  overflow-x: auto;
+
+  // Scrollbar - horizontal
+  &::-webkit-scrollbar {
+    width: 30px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-button:start:decrement,
+  &::-webkit-scrollbar-button:end:increment {
+    background: transparent;
+    display: none;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: rgba(9, 30, 66, 0.2);
+  }
+  &::-webkit-scrollbar-thumb:vertical,
+  &::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(221, 230, 245, 0.3);
+    border-radius: 4px;
+    display: block;
+    height: 48px;
+  }
+}

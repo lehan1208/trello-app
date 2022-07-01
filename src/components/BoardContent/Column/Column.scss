@@ -1,0 +1,79 @@
+@import '../../GlobalStyle/GlobalStyle.scss';
+
+.column {
+  flex: 0 0 auto;
+  width: 300px;
+  height: calc(100% - #{$gap});
+  &:first-child {
+    margin-left: $gap;
+  }
+
+  > * {
+    background-color: $list-bg-color;
+    color: #333;
+    padding: 0 6px 0 8px;
+  }
+
+  header {
+    padding-left: 15px;
+    height: $column-header-height;
+    line-height: $column-header-height;
+    font-size: 16px;
+    font-weight: bold;
+    border-top-left-radius: $column-border-radius;
+    border-top-right-radius: $column-border-radius;
+  }
+
+  footer {
+    padding-left: 15px;
+    height: $column-footer-height;
+    line-height: $column-footer-height;
+    font-size: 16px;
+    border-bottom-left-radius: $column-border-radius;
+    border-bottom-right-radius: $column-border-radius;
+  }
+
+  ul.card-list {
+    list-style-type: none;
+    margin: 0;
+    max-height: calc(
+      100% - #{$column-header-height} - #{$column-footer-height}
+    );
+    overflow-y: auto;
+
+    // Scrollbar - vertical
+    &::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    &::-webkit-scrollbar-button:start:decrement,
+    &::-webkit-scrollbar-button:end:increment {
+      background: transparent;
+      display: none;
+    }
+    &::-webkit-scrollbar-track-piece {
+      background: rgba(9, 30, 66, 0.08);
+    }
+    &::-webkit-scrollbar-track-piece:vertical:start {
+      border-radius: 4px 4px 0 0;
+    }
+    &::-webkit-scrollbar-track-piece:vertical:end {
+      border-radius: 0 0 4px 4px;
+    }
+    &::-webkit-scrollbar-track-piece:horizontal:start {
+      border-radius: 4px 0 0 4px;
+    }
+    &::-webkit-scrollbar-track-piece:horizontal:end {
+      border-radius: 0 4px 4px 0;
+    }
+    &::-webkit-scrollbar-thumb:vertical,
+    &::-webkit-scrollbar-thumb:horizontal {
+      background: rgba(9, 30, 66, 0.13);
+      border-radius: 4px;
+      display: block;
+      height: 48px;
+    }
+  }
+
+  //
+}
