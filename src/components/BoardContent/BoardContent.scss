@@ -8,8 +8,8 @@
 
   // Scrollbar - horizontal
   &::-webkit-scrollbar {
-    width: 30px;
-    height: 10px;
+    height: 8px;
+    width: 8px;
   }
   &::-webkit-scrollbar-button:start:decrement,
   &::-webkit-scrollbar-button:end:increment {
@@ -17,13 +17,31 @@
     display: none;
   }
   &::-webkit-scrollbar-track-piece {
-    background: rgba(9, 30, 66, 0.2);
+    background: rgba(9, 30, 66, 0.08);
+  }
+  &::-webkit-scrollbar-track-piece:vertical:start {
+    border-radius: 4px 4px 0 0;
+  }
+  &::-webkit-scrollbar-track-piece:vertical:end {
+    border-radius: 0 0 4px 4px;
+  }
+  &::-webkit-scrollbar-track-piece:horizontal:start {
+    border-radius: 4px 0 0 4px;
+  }
+  &::-webkit-scrollbar-track-piece:horizontal:end {
+    border-radius: 0 4px 4px 0;
   }
   &::-webkit-scrollbar-thumb:vertical,
   &::-webkit-scrollbar-thumb:horizontal {
-    background: rgba(221, 230, 245, 0.3);
+    background: rgba(9, 30, 66, 0.13);
     border-radius: 4px;
     display: block;
     height: 48px;
+  }
+
+  .column-drop-preview {
+    background-color: rgba(150, 150, 200, 0.1);
+    border: 1px dashed #abc;
+    margin: 5px;
   }
 }
