@@ -33,6 +33,16 @@
     font-size: 16px;
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
+    color: #888;
+
+    .footer-action {
+      margin-left: 5px;
+      cursor: pointer;
+
+      &:hover {
+        color: $app-main-color;
+      }
+    }
   }
 
   div.card-list {
@@ -78,6 +88,7 @@
 
     .card-ghost {
       transition: transform 0.18s ease;
+      font-weight: bold;
       transform: rotateZ(3deg);
     }
 

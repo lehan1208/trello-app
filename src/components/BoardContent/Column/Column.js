@@ -5,12 +5,8 @@ import { Container, Draggable } from 'react-smooth-dnd';
 import { mapOrder } from '../../../ultilities/sort.js';
 
 function Column(props) {
-  const { column } = props;
+  const { column, onCardDrop } = props;
   const cards = mapOrder(column.cards, column.cardOrders, 'id');
-
-  const onCardDrop = (dropResult) => {
-    console.log('>>>Inside cardDrops: ', dropResult);
-  };
 
   return (
     <>
@@ -29,7 +25,7 @@ function Column(props) {
             // onDragEnd={(e) => console.log('drag end', e)}
             {...column.props}
             groupName='col'
-            onDrop={onCardDrop}
+            onDrop={(dropResult) => onCardDrop(dropResult, column.id)}
             getChildPayload={(index) => cards[index]}
             dragClass='card-ghost'
             dropClass='card-ghost-drop'
@@ -49,7 +45,12 @@ function Column(props) {
               ))}
           </Container>
         </div>
-        <footer>This is footer</footer>
+        <footer>
+          <div className='footer-action'>
+            <i className='fa fa-plus plus-icon icon'></i>
+            <span className='add-text'>Add a new card</span>
+          </div>
+        </footer>
       </div>
     </>
   );
