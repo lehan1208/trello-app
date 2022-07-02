@@ -47,6 +47,7 @@
 
   .add-new-column {
     min-width: 250px;
+    height: 40px;
     padding: 4px;
     min-height: 32px;
     line-height: 32px;
@@ -68,7 +69,10 @@
 
   .content-add-new-column {
     min-width: 250px;
-    background-color: transparent;
+    height: 92px;
+    min-height: 32px;
+    background-color: #dee1e7f6;
+
     padding: 5px;
     border-radius: $column-border-radius;
     margin-left: 10px;
@@ -79,10 +83,11 @@
       align-items: center;
 
       i {
-        font-size: 30px;
-        margin-left: 16px;
+        font-size: 24px;
+        margin-left: 10px;
         padding: 0 4px;
         cursor: pointer;
+        color: #6b778c;
 
         &:hover {
           opacity: 0.6;

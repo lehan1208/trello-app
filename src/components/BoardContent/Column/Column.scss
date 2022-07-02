@@ -21,8 +21,7 @@
     // line-height: $column-header-height;
     font-size: 16px;
     font-weight: bold;
-    border-top-left-radius: $column-border-radius;
-    border-top-right-radius: $column-border-radius;
+
     cursor: pointer;
   }
 
@@ -50,6 +49,28 @@
         }
         &:hover {
           background-color: #dee1e7f6;
+        }
+      }
+    }
+  }
+
+  .add-new-card {
+    padding-bottom: 10px;
+
+    .group-btn {
+      padding-top: 5px;
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 24px;
+        margin-left: 10px;
+        padding: 0 4px;
+        cursor: pointer;
+        color: #6b778c;
+
+        &:hover {
+          opacity: 0.6;
         }
       }
     }

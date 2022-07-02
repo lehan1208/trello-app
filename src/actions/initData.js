@@ -16,6 +16,8 @@ export const initData = {
             'card-5',
             'card-6',
             'card-7',
+            'card-a',
+            'card-b',
           ],
           cards: [
             {
@@ -66,6 +68,20 @@ export const initData = {
               boardId: 'board-1',
               columnId: 'column-1',
               title: 'Title of card-7',
+              image: null,
+            },
+            {
+              id: 'card-a',
+              boardId: 'board-1',
+              columnId: 'column-1',
+              title: 'Title of card-a',
+              image: null,
+            },
+            {
+              id: 'card-b',
+              boardId: 'board-1',
+              columnId: 'column-1',
+              title: 'Title of card-b',
               image: null,
             },
           ],

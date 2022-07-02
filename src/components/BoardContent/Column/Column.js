@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Card from '../Card/Card';
 import './Column.scss';
-import { Container, Draggable } from 'react-smooth-dnd';
 import { mapOrder } from '../../../utilities/sort.js';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Form from 'react-bootstrap/Form';
-import ConfirmModal from '../../Common/ConfirmModal';
 import { MODAL_ACTION_CLOSE, MODAL_ACTION_CONFIRM } from '../../../constant';
+import ConfirmModal from '../../Common/ConfirmModal';
+
+import Dropdown from 'react-bootstrap/Dropdown';
+import { Container, Draggable } from 'react-smooth-dnd';
+import { v4 as uuidv4 } from 'uuid';
+import Form from 'react-bootstrap/Form';
 
 function Column(props) {
   const { column, onCardDrop, onUpdateColumn } = props;
@@ -15,13 +17,28 @@ function Column(props) {
   const [isShowModalDelete, setIsShowModalDelete] = useState(false);
   const [titleColumn, setTitleColumn] = useState('');
   const [isFirstClick, setIsFirstClick] = useState(true); // (1) tạo state
+
   const inputRef = useRef(); // (2) tạo inputRef
+
+  const selectAllText = (event) => {
+    setIsFirstClick(false); // (4) set lại isFirstClick = false
+    if (isFirstClick) {
+      // (5) nếu isFirstClick = true => select all text
+      event.target.select();
+    } else {
+      inputRef.current.setSelectionRange(
+        // (6) nếu isFirstClick = false => method setSelectionRange(start, end)
+        titleColumn.length,
+        titleColumn.length
+      );
+    }
+  };
 
   useEffect(() => {
     if (column && column.title) {
       setTitleColumn(column.title);
     }
-  }, [column.title]);
+  }, [column]);
 
   const toggleModal = () => {
     setIsShowModalDelete(!isShowModalDelete);
@@ -43,20 +60,6 @@ function Column(props) {
     toggleModal();
   };
 
-  const selectAllText = (event) => {
-    setIsFirstClick(false); // (4) set lại isFirstClick = false
-    if (isFirstClick) {
-      // (5) nếu isFirstClick = true => select all text
-      event.target.select();
-    } else {
-      inputRef.current.setSelectionRange(
-        // (6) nếu isFirstClick = false => method setSelectionRange(start, end)
-        titleColumn.length,
-        titleColumn.length
-      );
-    }
-  };
-
   const handleClickOutside = () => {
     setIsFirstClick(true);
     const newColumn = {
@@ -65,6 +68,42 @@ function Column(props) {
       _destroy: false,
     };
     onUpdateColumn(newColumn);
+  };
+
+  //  DOING WITH CARD
+  const [isShowAddNewCard, setIsShowAddNewCard] = useState(false);
+  const [valueTextArea, setValueTextArea] = useState('');
+
+  const textAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (isShowAddNewCard === true && textAreaRef && textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, [isShowAddNewCard]);
+
+  const handleAddNewCard = () => {
+    // validate- kiểm tra xem input đã nhập chưa, nếu chưa thì vân focus vào input đó
+    if (!valueTextArea) {
+      textAreaRef.current.focus();
+      return;
+    }
+
+    const newCard = {
+      id: uuidv4(),
+      boardId: column.boardId,
+      columnId: column.id,
+      title: valueTextArea,
+      image: null,
+    };
+    let newColumn = { ...column };
+    newColumn.cards = [...newColumn.cards, newCard];
+    newColumn.cardOrders = newColumn.cards.map((card) => card.id);
+
+    onUpdateColumn(newColumn);
+    setValueTextArea('');
+    textAreaRef.current.focus();
+    // setIsShowAddNewCard(false);
   };
 
   return (
@@ -139,13 +178,44 @@ function Column(props) {
                 </Draggable>
               ))}
           </Container>
+
+          {/* Add-new-card */}
+
+          {isShowAddNewCard === true && (
+            <div className='add-new-card'>
+              <textarea
+                type='text'
+                placeholder='Enter a title for this card...'
+                className='form-control'
+                rows='2'
+                spellCheck='false'
+                ref={textAreaRef}
+                value={valueTextArea}
+                onChange={(e) => setValueTextArea(e.target.value)}
+              ></textarea>
+              <div className='group-btn'>
+                <button
+                  className='btn btn-primary'
+                  onClick={() => handleAddNewCard()}
+                >
+                  Add card
+                </button>
+                <i className='fa fa-times icon'></i>
+              </div>
+            </div>
+          )}
         </div>
-        <footer>
-          <div className='footer-action'>
-            <i className='fa fa-plus plus-icon icon'></i>
-            <span className='add-text'>Add a new card</span>
-          </div>
-        </footer>
+        {isShowAddNewCard === false && (
+          <footer>
+            <div
+              className='footer-action'
+              onClick={() => setIsShowAddNewCard(true)}
+            >
+              <i className='fa fa-plus plus-icon icon'></i>
+              Add a new card
+            </div>
+          </footer>
+        )}
       </div>
 
       <ConfirmModal
