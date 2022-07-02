@@ -18,12 +18,41 @@
   header {
     padding-left: 15px;
     height: $column-header-height;
-    line-height: $column-header-height;
+    // line-height: $column-header-height;
     font-size: 16px;
     font-weight: bold;
     border-top-left-radius: $column-border-radius;
     border-top-right-radius: $column-border-radius;
     cursor: pointer;
+  }
+
+  .column-drag-handle {
+    display: flex;
+    padding-right: 3px;
+    padding-top: 5px;
+    padding-left: 7px;
+
+    .column-title {
+      width: 90%;
+    }
+
+    .column-dropdown {
+      width: 10%;
+      padding-right: 3px;
+
+      .dropdown-toggle {
+        padding: 2px 7px;
+
+        &::after {
+          content: '...';
+          border: none !important;
+          outline: none;
+        }
+        &:hover {
+          background-color: #dee1e7f6;
+        }
+      }
+    }
   }
 
   footer {
@@ -103,6 +132,4 @@
       margin: 5px;
     }
   }
-
-  //
 }

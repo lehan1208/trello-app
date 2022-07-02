@@ -51,7 +51,7 @@
     min-height: 32px;
     line-height: 32px;
     border-radius: $column-border-radius;
-    background-color: #ffffff3d;
+    background-color: transparent;
     color: white;
     cursor: pointer;
     font-size: 16px;
@@ -63,6 +63,31 @@
 
     &:hover {
       background-color: #ffffff52;
+    }
+  }
+
+  .content-add-new-column {
+    min-width: 250px;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: $column-border-radius;
+    margin-left: 10px;
+
+    .group-btn {
+      padding-top: 5px;
+      display: flex;
+      align-items: center;
+
+      i {
+        font-size: 30px;
+        margin-left: 16px;
+        padding: 0 4px;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
     }
   }
 }

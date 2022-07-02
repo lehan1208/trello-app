@@ -23,3 +23,5 @@ export const generateItems = (count, creator) => {
   }
   return result;
 };
+
+// ref url: https://github.com/kutlugsahin/smooth-dnd-demo/blob/a5d9d1a466e3b396f56a07c6caf47fb5088f9514/src/demo/pages/utils.js#L2

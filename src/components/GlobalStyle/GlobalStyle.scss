@@ -4,7 +4,7 @@ $navbar-board-bg-color: #0079bf;
 $list-bg-color: #ebecf0;
 $app-main-color: #333;
 
-$column-header-height: 40px;
+$column-header-height: 45px;
 $column-footer-height: 38px;
 $column-border-radius: 5px;
 $card-border-radius: 3px;
@@ -33,14 +33,29 @@ $screen-sm: 768px;
 $screen-phone: 480px;
 
 .trello-container {
+  width: 100%;
   height: 100vh;
   display: grid;
   grid-template-rows: 40px 50px 1fr;
-  background-color: $board-bg-color;
+  background-image: url('https://images.pexels.com/photos/5213911/pexels-photo-5213911.jpeg?cs=srgb&dl=pexels-markus-winkler-5213911.jpg&fm=jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   color: $app-main-color;
+  background-position: center;
 
   .icon {
     font-size: 14px;
     margin-right: 10px;
+  }
+
+  .customize-input-colum {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+    }
   }
 }
